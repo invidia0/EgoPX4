@@ -1,0 +1,8 @@
+<launch>
+  <arg name="drone_id" default="0" />
+
+  <node pkg="offboard" name="drone_$(arg drone_id)_offboard_node" type="ego_to_mavros" output="screen">
+        <param name="id" value="drone_id"/>
+  </node>
+
+</launch>

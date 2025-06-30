@@ -20,6 +20,7 @@
 
 int state_flag = 0;
 int ego_poscmd_count = 0;
+int id = 0;
 
 
 mavros_msgs::State current_state;
@@ -64,19 +65,20 @@ int main(int argc, char** argv)
 
     float TAKEOFF_HEIGHT = 2;
 
-    ros::Subscriber local_position_sub = nh.subscribe<geometry_msgs::PoseStamped>("/drone_0/mavros/local_position/pose", 10, local_position_cb);
+    nh.getParam("id", id);
+    ros::Subscriber local_position_sub = nh.subscribe<geometry_msgs::PoseStamped>("/uav"+std::to_string(id)+"/mavros/local_position/pose", 10, local_position_cb);
     ros::Subscriber ego_pos_sub = nh.subscribe<offboard::PositionCommand>("/position_cmd", 10, ego_pos_cb);
     
-    ros::Publisher setpoint_raw_local_pub = nh.advertise<mavros_msgs::PositionTarget>("/drone_0/mavros/setpoint_raw/local", 10);
+    ros::Publisher setpoint_raw_local_pub = nh.advertise<mavros_msgs::PositionTarget>("/uav"+std::to_string(id)+"/mavros/setpoint_raw/local", 10);
 
     ros::Subscriber state_sub = nh.subscribe<mavros_msgs::State>
-            ("/drone_0/mavros/state", 10, state_cb);
+            ("/uav"+std::to_string(id)+"/mavros/state", 10, state_cb);
     ros::Publisher local_pos_pub = nh.advertise<geometry_msgs::PoseStamped>
-            ("/drone_0/mavros/setpoint_position/local", 10);
+            ("/uav"+std::to_string(id)+"/mavros/setpoint_position/local", 10);
     ros::ServiceClient arming_client = nh.serviceClient<mavros_msgs::CommandBool>
-            ("/drone_0/mavros/cmd/arming");
+            ("/uav"+std::to_string(id)+"/mavros/cmd/arming");
     ros::ServiceClient set_mode_client = nh.serviceClient<mavros_msgs::SetMode>
-            ("/drone_0/mavros/set_mode");
+            ("/uav"+std::to_string(id)+"/mavros/set_mode");
 
     // timer_ = nh.createTimer(ros::Duration(0.005), std::bind(timer_cb, this));
 

@@ -3,9 +3,9 @@
   <arg name="map_size_x" default="100" />
   <arg name="map_size_y" default="50" />
   <arg name="map_size_z" default="3.0" />
-
-  <arg name="odom_topic" default="/drone_0/mavros/local_position/odom" />
   <arg name="drone_id" default="0" />
+  <arg name="vehicle_name" default="uav$(arg drone_id)"/>
+  <arg name="odom_topic" default="/$(arg vehicle_name)/mavros/local_position/odom" />
 
   <!-- Suppress rviz eol warning -->
   <env name="DISABLE_ROS1_EOL_WARNINGS" value="1" />
@@ -15,8 +15,8 @@
 
   <node pkg="offboard" name="camera_pose_publisher" type="camera_pose_publisher.py" output="screen">
     <param name="parent_frame" value="world" />
-    <param name="child_frame" value="drone_0/camera_link" />
-    <param name="pose_topic" value="drone_0/camera/pose" />
+    <param name="child_frame" value="$(arg vehicle_name)/camera_link" />
+    <param name="pose_topic" value="$(arg vehicle_name)/camera/pose" />
   </node>
 
   <!-- main algorithm params -->
@@ -34,8 +34,8 @@
     <!-- camera pose: transform of camera frame in the world frame -->
     <!-- depth topic: depth image, 640x480 by default -->
     <!-- don't set cloud_topic if you already set these ones! -->
-    <arg name="camera_pose_topic" value="/drone_0/camera/pose"/>
-    <arg name="depth_topic" value="/drone_0/camera/depth/image_raw"/>
+    <arg name="camera_pose_topic" value="$(arg vehicle_name)/camera/pose"/>
+    <arg name="depth_topic" value="$(arg vehicle_name)/camera/depth/image_raw"/>
 
     <!-- topic of point cloud measurement, such as from LIDAR  -->
     <!-- don't set camera pose and depth, if you already set this one! -->
