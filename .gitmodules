@@ -1,0 +1,7 @@
+[submodule "uvify_sitl"]
+	path = uvify_sitl
+	url = https://github.com/invidia0/uvify_sitl.git
+	branch = ego-swarm-exp
+[submodule "ego-planner-swarm"]
+	path = ego-planner-swarm
+	url = https://github.com/ZJU-FAST-Lab/ego-planner-swarm.git
