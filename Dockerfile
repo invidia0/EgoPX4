@@ -39,6 +39,8 @@ RUN apt-get install -y python3-pip python3-venv python3-dev \
     ros-$ROS_DISTRO-roslint \
     ros-$ROS_DISTRO-rviz \
     && rm -rf /var/lib/apt/lists/*
+    # MAVROS
+    
 
 # Install ROS 2 dependencies
 RUN apt-get update && apt-get install -y \

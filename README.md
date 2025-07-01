@@ -30,7 +30,7 @@ docker build -t egopx4-image .
 **Run the Docker container with your workspace mounted and necessary environment and device access:**
 
 ```bash
-docker run -it --rm \
+docker run -it \
   --name egopx4-container \
   --privileged \
   --net=host \
