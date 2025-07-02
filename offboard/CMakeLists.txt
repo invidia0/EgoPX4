@@ -161,8 +161,8 @@ include_directories(
 add_executable(ego_to_mavros src/ego_to_mavros.cpp)
 target_link_libraries(ego_to_mavros ${catkin_LIBRARIES})
 
-add_executable(get_local_pose src/get_local_pose.cpp)
-target_link_libraries(get_local_pose ${catkin_LIBRARIES})
+#add_executable(get_local_pose src/get_local_pose.cpp)
+#target_link_libraries(get_local_pose ${catkin_LIBRARIES})
 
 
 #############

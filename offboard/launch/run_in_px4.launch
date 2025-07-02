@@ -11,7 +11,7 @@
   <env name="DISABLE_ROS1_EOL_WARNINGS" value="1" />
 
   <!-- Launch RViz -->
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find offboard)/launch/default.rviz" required="true" />
+  <!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find offboard)/launch/default.rviz" required="true" /> -->
 
   <node pkg="offboard" name="camera_pose_publisher" type="camera_pose_publisher.py" output="screen">
     <param name="parent_frame" value="world" />
